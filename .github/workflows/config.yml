@@ -2,7 +2,7 @@ name: Deploy do Site com GitHub Actions
 
 on:
     push:
-      branches: ["main"]
+      branches: ["biblioteca"]
 
 permissions:
     contents: read
