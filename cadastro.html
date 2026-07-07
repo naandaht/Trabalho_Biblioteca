@@ -1,0 +1,473 @@
+<!-- ===================== cadastro.html ===================== -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Biblioteca - Cadastro</title>
+<style>
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+
+    }
+ 
+    body {
+
+      background: #f5f2eb;
+
+      min-height: 100vh;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 20px;
+
+    }
+ 
+    .app-container {
+
+      max-width: 1000px;
+
+      width: 100%;
+
+      background: #ffffff;
+
+      border-radius: 32px;
+
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+
+      padding: 28px 30px 36px;
+
+    }
+ 
+    .nav-bar {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px 20px;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      border-bottom: 2px solid #eae3d9;
+
+      padding-bottom: 18px;
+
+      margin-bottom: 28px;
+
+    }
+ 
+    .logo h1 {
+
+      font-size: 1.9rem;
+
+      font-weight: 600;
+
+      color: #3b2c1e;
+
+      letter-spacing: -0.5px;
+
+    }
+
+    .logo span {
+
+      background: #c9b8a4;
+
+      padding: 0 10px;
+
+      border-radius: 30px;
+
+      color: #2d241a;
+
+      font-size: 1rem;
+
+      font-weight: 500;
+
+      margin-left: 6px;
+
+    }
+ 
+    .nav-links {
+
+      display: flex;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+
+    }
+ 
+    .nav-btn {
+
+      background: transparent;
+
+      border: 1px solid #d6cdc0;
+
+      padding: 8px 18px;
+
+      border-radius: 40px;
+
+      font-weight: 500;
+
+      color: #3b2c1e;
+
+      font-size: 0.95rem;
+
+      cursor: pointer;
+
+      transition: 0.15s;
+
+      text-decoration: none;
+
+      display: inline-block;
+
+    }
+
+    .nav-btn:hover {
+
+      background: #eae3d9;
+
+      border-color: #b7a694;
+
+    }
+
+    .nav-btn.active {
+
+      background: #3b2c1e;
+
+      border-color: #3b2c1e;
+
+      color: white;
+
+    }
+ 
+    .form-card {
+
+      background: #fcf9f5;
+
+      border-radius: 28px;
+
+      padding: 28px 30px 34px;
+
+      border: 1px solid #e6ddd3;
+
+      max-width: 520px;
+
+      margin: 0 auto;
+
+    }
+ 
+    .form-group {
+
+      margin-bottom: 22px;
+
+    }
+
+    .form-group label {
+
+      display: block;
+
+      font-weight: 500;
+
+      margin-bottom: 6px;
+
+      color: #2d241a;
+
+      font-size: 0.95rem;
+
+    }
+
+    .form-group input {
+
+      width: 100%;
+
+      padding: 14px 18px;
+
+      border-radius: 40px;
+
+      border: 1px solid #d6cdc0;
+
+      background: white;
+
+      font-size: 1rem;
+
+      transition: 0.15s;
+
+    }
+
+    .form-group input:focus {
+
+      outline: none;
+
+      border-color: #8f7b66;
+
+      box-shadow: 0 0 0 3px rgba(139, 119, 98, 0.2);
+
+    }
+
+    .form-row {
+
+      display: flex;
+
+      gap: 18px;
+
+      flex-wrap: wrap;
+
+    }
+
+    .form-row .form-group {
+
+      flex: 1 1 160px;
+
+    }
+ 
+    .btn-primary {
+
+      background: #3b2c1e;
+
+      border: none;
+
+      color: white;
+
+      font-weight: 600;
+
+      padding: 14px 32px;
+
+      border-radius: 60px;
+
+      font-size: 1rem;
+
+      cursor: pointer;
+
+      transition: 0.15s;
+
+      width: 100%;
+
+      letter-spacing: 0.3px;
+
+    }
+
+    .btn-primary:hover {
+
+      background: #1f1610;
+
+      transform: scale(0.98);
+
+    }
+ 
+    .mensagem-feedback {
+
+      margin-top: 18px;
+
+      padding: 12px 18px;
+
+      border-radius: 40px;
+
+      background: #f1ede7;
+
+      font-weight: 500;
+
+      color: #2d241a;
+
+      text-align: center;
+
+    }
+
+    .mensagem-feedback.erro {
+
+      background: #f9e4e0;
+
+      color: #a14536;
+
+    }
+
+    .mensagem-feedback.sucesso {
+
+      background: #dde8da;
+
+      color: #2a5a3a;
+
+    }
+ 
+    @media (max-width: 600px) {
+
+      .app-container { padding: 18px; }
+
+      .nav-bar { flex-direction: column; align-items: stretch; }
+
+      .nav-links { justify-content: center; }
+
+      .form-card { padding: 20px; }
+
+    }
+</style>
+</head>
+<body>
+<div class="app-container">
+ 
+  <div class="nav-bar">
+<div class="logo">
+<h1>📖 Biblio<span>virtual</span></h1>
+</div>
+<div class="nav-links">
+<a href="livros.html" class="nav-btn">📚 Livros</a>
+<a href="cadastro.html" class="nav-btn active">✍️ Cadastro</a>
+<a href="sobre.html" class="nav-btn">ℹ️ Sobre</a>
+</div>
+</div>
+ 
+  <div class="form-card">
+<h2 style="font-weight: 500; margin-bottom: 20px; color: #2d241a;">📝 Cadastrar livro</h2>
+<form id="formCadastro" novalidate>
+<div class="form-group">
+<label for="titulo">Título *</label>
+<input type="text" id="titulo" placeholder="Ex: O Hobbit" required>
+</div>
+<div class="form-group">
+<label for="autor">Autor *</label>
+<input type="text" id="autor" placeholder="J.R.R. Tolkien" required>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="ano">Ano</label>
+<input type="number" id="ano" placeholder="1937" min="1000" max="2099">
+</div>
+<div class="form-group">
+<label for="genero">Gênero</label>
+<input type="text" id="genero" placeholder="Fantasia">
+</div>
+</div>
+<button type="submit" class="btn-primary">➕ Cadastrar livro</button>
+<div id="feedbackMsg" class="mensagem-feedback" style="display: none;"></div>
+</form>
+<p style="margin-top: 24px; font-size: 0.9rem; color: #6b5d4d; text-align: center; border-top: 1px solid #e6ddd3; padding-top: 18px;">
+
+      ⚠️ Os dados não são armazenados (somente simulação)
+</p>
+</div>
+ 
+</div>
+ 
+<script>
+
+  (function() {
+
+    'use strict';
+ 
+    const form = document.getElementById('formCadastro');
+
+    const tituloInput = document.getElementById('titulo');
+
+    const autorInput = document.getElementById('autor');
+
+    const anoInput = document.getElementById('ano');
+
+    const generoInput = document.getElementById('genero');
+
+    const feedback = document.getElementById('feedbackMsg');
+ 
+    function exibirFeedback(mensagem, tipo = 'sucesso') {
+
+      feedback.style.display = 'block';
+
+      feedback.textContent = mensagem;
+
+      feedback.className = 'mensagem-feedback';
+
+      if (tipo === 'erro') {
+
+        feedback.classList.add('erro');
+
+      } else if (tipo === 'sucesso') {
+
+        feedback.classList.add('sucesso');
+
+      }
+
+    }
+ 
+    function limparCampos() {
+
+      tituloInput.value = '';
+
+      autorInput.value = '';
+
+      anoInput.value = '';
+
+      generoInput.value = '';
+
+    }
+ 
+    form.addEventListener('submit', function(event) {
+
+      event.preventDefault();
+ 
+      const titulo = tituloInput.value.trim();
+
+      const autor = autorInput.value.trim();
+
+      const ano = anoInput.value.trim();
+ 
+      if (titulo === '') {
+
+        exibirFeedback('❌ O campo "Título" é obrigatório.', 'erro');
+
+        tituloInput.focus();
+
+        return;
+
+      }
+
+      if (autor === '') {
+
+        exibirFeedback('❌ O campo "Autor" é obrigatório.', 'erro');
+
+        autorInput.focus();
+
+        return;
+
+      }
+ 
+      if (ano !== '') {
+
+        const anoNum = Number(ano);
+
+        if (isNaN(anoNum) || !Number.isInteger(anoNum) || anoNum < 1000 || anoNum > 2099) {
+
+          exibirFeedback('⚠️ Ano inválido. Use um número entre 1000 e 2099.', 'erro');
+
+          anoInput.focus();
+
+          return;
+
+        }
+
+      }
+ 
+      exibirFeedback(`✅ Livro "${titulo}" cadastrado com sucesso! (simulação)`, 'sucesso');
+
+      limparCampos();
+
+    });
+ 
+    console.log('✍️ Página de cadastro carregada');
+
+  })();
+</script>
+</body>
+</html>
+ 
