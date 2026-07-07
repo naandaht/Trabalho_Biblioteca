@@ -1,34 +1,30 @@
 name: Deploy do Site com GitHub Actions
- 
+
 on:
     push:
-     branches: ["main"]
- 
+      branches: ["main"]
+
 permissions:
     contents: read
     pages: write
     id-token: write
- 
+
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
- 
-    steps:
-      # Atualizado para @v4 (garante compatibilidade com o ambiente atual)
+    deploy:
+      runs-on: ubuntu-latest
+
+      steps:
       - name: Checkout do código
         uses: actions/checkout@v4
- 
-      # Atualizado para @5
+
       - name: Configurar o GitHub Pages
         uses: actions/configure-pages@v5
- 
-      # Atualizado para @6
-      - name: Upload dos Arquivos do site
+
+      - name: Upload dos arquivos do site
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
- 
-      # Atualizado para @v4
-      - name: Publisher no GitHub Pages
+
+      - name: Publicar no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
